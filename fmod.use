@@ -1,0 +1,7 @@
+Name: fmod
+Origin: git://github.com/shamanas/ooc-fmod.git 
+Description: Sound library
+Libs: -lfmodex-4.34.04
+Includes: fmodex/fmod.h
+SourcePath: .
+
