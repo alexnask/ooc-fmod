@@ -1,5 +1,6 @@
 include fmodex/fmod
 include fmodex/fmod_memoryinfo
+include fmodex/fmod_dsp
 
 Init : class {
     normal : extern(FMOD_INIT_NORMAL) static Int
@@ -514,12 +515,77 @@ CreateSoundExInfo : cover from FMOD_CREATESOUNDEXINFO* {
     minmidigranularity : extern UInt
 }
 
-SOundGroupBehavior : enum {
-    fail,
-    mute,
-    steallowest,
-    max,
-    forceint = 65536
+ReverbProperties : cover from FMOD_REVERB_PROPERTIES* {
+    Instance : extern Int
+    Environment : extern Int
+    EnvSize : extern Float
+    EnvDiffusion : extern Float
+    Room : extern Int
+    RoomHF : extern Int
+    RoomLF : extern Int
+    DecayTime : extern Float
+    DecayHFRatio : extern Float
+    DecayLFRatio : extern Float
+    Reflection : extern Int
+    ReflectionsDelay : extern Float
+    ReflectionsPan : extern Float[]
+    Reverb : extern Int
+    ReverbDelay : extern Float
+    ReverbPan : extern Float[]
+    EchoTime : extern Float
+    EchoDepth : extern Float
+    ModulationTime : extern Float
+    ModulationDepth : extern Float
+    AirAbsorptionHF : extern Float
+    HFReference : Float
+    LFReference : Float
+    RoomRolloffFactor : extern Float
+    Diffusion : extern Float
+    Density : extern Float
+    Flags : extern UInt
+}
+
+ReverbFlags : class {
+    decatimescale : extern(FMOD_REVERB_FLAGS_DECAYTIMESCALE) static const Int
+    reflectionsscale : extern(FMOD_REVERB_FLAGS_REFLECTIONSSCALE) static const Int
+    reflectionsdelayscale : extern(FMOD_REVERB_FLAGS_REFLECTIONSDELAYSCALE) static const Int
+    reverbscale : extern(FMOD_REVERB_FLAGS_REVERBSCALE) static const Int
+    reverbdelayscale : extern(FMOD_REVERB_FLAGS_REVERBDELAYSCALE) static const Int
+    decayhflimit : extern(FMOD_REVERB_FLAGS_DECAYHFLIMIT) static const Int
+    echotimescale : extern(FMOD_REVERB_FLAGS_ECHOTIMESCLAE) static const Int
+    modulationtimescale : extern(FMOD_REVERB_FLAGS_MODULATIONTIMESCALE) static const Int
+    core0 : extern(FMOD_REVERB_FLAGS_CORE0) static const Int
+    core1 : extern(FMOD_REVERB_FLAGS_CORE1) static const Int
+    highqualityreverb : extern(FMOD_REVERB_FLAGS_HIGHQUALITYREVERB) static const Int
+    highqualitydpl2reverb : extern(FMOD_REVERB_FLAGS_HIGHQUALITYDPL2REVERB) static const Int
+    default : extern(FMOD_REVERB_FLAGS_DEFAULT) static const Int
+    
+}
+
+ReverbChannelProperties : cover from FMOD_REVERB_CHANNELPROPERTIES* {
+    Direct : extern Int
+    DirectHF : extern Int
+    Room : extern Int
+    RoomHF : extern Int
+    Obstruction : extern Int
+    ObstructionLFRation : extern Float
+    Occlusion : extern Int
+    OcclusionLFRation : extern Float
+    OcclusionRoomRation : extern Float
+    OcclusionDirectRation : extern Float
+    Exclusion : extern Int
+    ExclusionLFRation : extern Float
+    OutsideVolumeHF : extern Int
+    DopplerFactor : extern Float
+    RolloffFactor : extern Float
+    RoomRolloffFactor : extern Float
+    AirAbsorptionFactor : extern Float
+    Flags : extern UInt
+    ConnectionPoint : extern Dsp
+}
+
+Dsp : cover from FMOD_DSP* {
+    // Fill this
 }
 
 SyncPoint : cover from FMOD_SYNCPOINT*
